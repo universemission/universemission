@@ -165,7 +165,7 @@ INSERT INTO RoomState
 				"There’s a door to the north.", null, 1, null, 3, null, 5, null, null, null, "clean graffiti", 4);
 INSERT INTO RoomState
 		VALUES(2, 3, "Just a plain Corridor", "You cleaned up the grafitti and all that is left is 'clean wall'. Clean corridors are a janitor’s best friend. "
-				"You actually aren’t paid to do this but it soothes his soul nonetheless. \nThe corridor continues to the south. There’s a door to the north.", null, 1, null, 3, null, 6, null, null, null, null,
+				"You actually aren’t paid to do this but it soothes your soul nonetheless. \nThe corridor continues to the south. There’s a door to the north.", null, 1, null, 3, null, 6, null, null, null, null,
 				null);
 INSERT INTO RoomState
 		VALUES(3, 1, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight… There is a single 'clothespin' on the corridor floor.", null, 2, 4, null, null, 7, 22, null, null, null,

@@ -3,14 +3,17 @@ import ui
 
 
 
-#Introducing variables
-gamecommands = ['move', 'look', 'examine', 'cry', 'end', 'combine','pick', 'pray', 'inventory']
+
+
+
+
+#Introdusing variables
+gamecommands = ['move', 'look', 'examine', 'cry', 'end', 'combine','pick', 'pray', 'inventory', 'talk']
 crycount = 0
 game = 0
 keyword=False
 keyitem=False
 consoletext=""
-consoletext_prev=""
 #Returns information from database
 def database(information):
    #Returns player position room
@@ -19,14 +22,15 @@ def database(information):
        cur.execute(sql)
        for result in cur:
            return result[0]
-   elif information == "roomname":
-       sql = "SELECT roomstate.name FROM roomstate,player, room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
-       cur.execute(sql)
-       for result in cur:
-           return result[0]
    #Returns current roomstate from the room player is in
    elif information == "roomstate":
        sql = "SELECT RoomStateID FROM room"
+       cur.execute(sql)
+       for result in cur:
+           return result[0]
+       # Current roomstates open passages to north
+   elif information == "roomname":
+       sql = "SELECT roomstate.name FROM roomstate,player, room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
        cur.execute(sql)
        for result in cur:
            return result[0]
@@ -65,6 +69,24 @@ def database(information):
    else:
        return 0
 
+def mobs():
+    sql = "SELECT roomstate.NPCID FROM roomstate,player, room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
+    cur.execute(sql)
+    for result in cur:
+        return str(result[0])
+
+
+def roomimage():
+    url = "0"
+    sql = "SELECT imagepath FROM roomstate, player,room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
+    cur.execute(sql)
+    for result in cur:
+        url = result[0]
+    if url is not None:
+        return url
+    else:
+        return None
+
 
 #Finds out if string is the same as roomstates keyword string
 def iskeyword(information):
@@ -82,7 +104,6 @@ def iskeyword(information):
 
 
    if keywordcheck == item1:
-
 
        keyword = True
        return True
@@ -149,11 +170,28 @@ def availableitems():
    if None in roomitems:
        roomitems.remove(None)
 
-
-
-
    return roomitems
 
+def talk(information):
+
+    monsterid = "0"
+    information.pop(0)
+    information.pop(0)
+    informationid = ' '.join(information)
+
+    sql = "SELECT ID FROM npc WHERE npc.name ='" + informationid + "'"
+    cur.execute(sql)
+    for result in cur:
+        monsterid = str(result[0])
+    if monsterid in mobs():
+        sql = "SELECT dialogues FROM npc WHERE npc.id ='" + monsterid + "'"
+        cur.execute(sql)
+        for result in cur:
+            monsterdialogue = str(result)
+        UpdateConsole(monsterdialogue)
+
+    else:
+        UpdateConsole("You tried to talk to something which is not present here.")
 
 def itemsavailablelist():
    itemlist = owneditemsmethod()
@@ -173,16 +211,31 @@ def itemsavailablelist():
    else:
        return "None."
 
+def isitover():
+    keyitemcheck = str
+    sql = "SELECT keyitem FROM roomstate, player,room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
+    cur.execute(sql)
+    for result in cur:
+        keyitemcheck = result[0]
+    if keyitemcheck == 666:
+        pass ##################### LOPETTAA PELIN ##############################
+
 
 #Sees if there is also an keyitem in the room. If not, roomstate ++. If is and player owns item, roomstate ++
 def situationcheck():
    global keyword
    keyitemcheck = str
    ownership = str
+   keyitemcheck =str
    sql = "SELECT keyitem FROM roomstate, player,room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
    cur.execute(sql)
    for result in cur:
        keyitemcheck = result[0]
+   sql = "SELECT keyword FROM roomstate, player,room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
+   cur.execute(sql)
+   for result in cur:
+       keywordcheck = result[0]
+
 
 
    if keyitemcheck is None and keyword == True:
@@ -205,27 +258,22 @@ def situationcheck():
            UpdateConsole(database("description"))
            keyword = False
 
+   elif keyitemcheck is not None and keywordcheck is None:
+       sql = "SELECT ownership FROM item WHERE id ='" + str(keyitemcheck) + "'"
+       cur.execute(sql)
+       for result in cur:
+           ownership = result[0]
 
-
-
-
-
-
-
-
-
-
+       if ownership == 1:
+           sql = "UPDATE room, roomstate, player SET room.roomstateID = roomstateID +1 WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
+           cur.execute(sql)
+           UpdateConsole(database("description"))
+           keyword = False
 
        else:
 
 
            keyword = False
-
-
-
-
-
-
 
 
    #ENDING THE GAME HAPPENS HERE
@@ -259,7 +307,7 @@ def MoveRoom(direction):
            UpdateConsole(database("description"))
        #If you cant go there
        else:
-           UpdateConsole("You cant go there! Banging your head to wall wont help!")
+           UpdateConsole("You cant go there! Banging your head against wall won't help!")
 
 
 #Picking up items
@@ -312,6 +360,7 @@ def pick(information):
 
 #Reads item description
 def look(information):
+   mob = "0"
    information.pop(0)
    informationid = ' '.join(information)
 
@@ -321,18 +370,24 @@ def look(information):
    for result in cur:
        informationid = result[0]
 
+   sql = "SELECT ID FROM NPC WHERE npc.name ='" + str(informationid) + "'"
+   cur.execute(sql)
+   for result in cur:
+       mob = str(result[0])
 
 
-
-   if informationid in availableitems():
-
+   if informationid in availableitems() and informationid is not None:
 
        sql = "SELECT Description FROM ITEM WHERE id ='" + str(informationid) + "'"
        cur.execute(sql)
        for result in cur:
            UpdateConsole(result)
 
-
+   elif mob in mobs():
+       sql = "SELECT Description FROM NPC WHERE id ='" + str(mob) + "'"
+       cur.execute(sql)
+       for result in cur:
+           UpdateConsole(result)
 
 
    else:
@@ -383,8 +438,10 @@ def combineitems(information):
            informationid2 = result[0]
 
 
+
+
        #Finds out if items exist and if not, creates errors according to what items are not available/not exist
-       if informationid1 and informationid2 in availableitems():
+       if informationid1 and informationid2 in availableitems() and informationid1 in owneditemsmethod() or informationid2 in owneditemsmethod() or informationid1 in owneditemsmethod() and informationid2 in owneditemsmethod():
            sql = "SELECT relates FROM ITEM WHERE item.ID ='" + str(informationid1) + "'"
            cur.execute(sql)
            for result in cur:
@@ -424,6 +481,9 @@ def combineitems(information):
            pass
 
 
+       elif informationid1 in owneditemsmethod() and informationid2 not in owneditemsmethod() or informationid1 not in owneditemsmethod() and informationid2 in owneditemsmethod() and informationid1 not in owneditemsmethod() or informationid2 not in owneditemsmethod() :
+           UpdateConsole("You should try to pick up something before trying to combine those:")
+
        elif informationid1 in availableitems() and informationid2 not in availableitems():
            UpdateConsole("Item '"+ item2 + "' does not exist!")
 
@@ -452,6 +512,7 @@ def returnConsoletext():
     global consoletext
     return consoletext
 
+
 #Cry method. Cry 3 times and you are dead
 def Cry():
    global crycount
@@ -465,13 +526,9 @@ def Cry():
 def command(string):
    stringlower = string.lower()
    list = stringlower.split(' ')
-
-
-
-
+   isitover()
    if iskeyword(list):
        pass
-
 
    elif list[0] in gamecommands:
 
@@ -481,6 +538,15 @@ def command(string):
                MoveRoom(list[1])
            else:
                UpdateConsole("You should know the direction where to move before trying to do so!")
+
+       elif list[0] == "talk":
+           if len(list)>= 3:
+               talk((list))
+           elif len(list) >= 2 and list[1] == "to":
+               UpdateConsole("You talk to emptiness and it does not answer. How rude.")
+           elif len(list) == 1:
+               UpdateConsole("Try talking TO someone.")
+
 
 
        elif list[0] == "cry":
@@ -516,19 +582,14 @@ def command(string):
            else:
                UpdateConsole("Who do you pray for?")
        elif list[0] == "inventory":
-           UpdateConsole(itemsavailablelist())
-
-
-
-
-
-
-
+           itemsavailablelist()
+       elif list[0] == "xyzzy":
+           UpdateConsole("Nothing happens.")
 
 
 
    else:
-       pass
+       UpdateConsole("Not a proper command")
 
 
 
@@ -536,11 +597,23 @@ def command(string):
    situationcheck()
 
 
+def roomimage():
+   url = "0"
+   sql = "SELECT imagepath FROM roomstate, player,room WHERE roomstate.RoomID = player.RoomID AND Roomstate.Id = Room.RoomstateId AND roomstate.roomid = room.id"
+   cur.execute(sql)
+   for result in cur:
+       url = result[0]
+   if url is not None:
+       return url
+   else:
+       return "placeholder.png"
+
 #Game loop
 def GAME():
    global db,cur
    db = mysql.connector.connect(host="localhost",user="root",passwd="juuri123",db="space",buffered=True)
    cur=db.cursor()
+   UpdateConsole(database("description"))
    return
 
 
