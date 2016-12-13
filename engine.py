@@ -1,14 +1,9 @@
 import mysql.connector
-import ui
-
-
-
-
-
+import universemission_ui
 
 
 #Introdusing variables
-gamecommands = ['move', 'look', 'examine', 'cry', 'end', 'combine','pick', 'pray', 'inventory', 'talk']
+gamecommands = ['move', 'look', 'examine', 'cry', 'end', 'combine','pick', 'pray', 'inventory', 'talk', 'help']
 crycount = 0
 game = 0
 keyword=False
@@ -74,7 +69,8 @@ def mobs():
     cur.execute(sql)
     for result in cur:
         return str(result[0])
-
+def help():
+    UpdateConsole("You are able to 'MOVE north, east, south or west'.'TALK TO x'.'USE x'.'LOOK' or 'LOOK x'. 'CLEAN x'. 'PICK UP x'.'COMBINE x WITH y'.'PRAY' or 'PRAY FOR x'. 'PRESS x'. You can try to 'UNLOCK DOOR'. You can try to use code any code, for example '1337'.'QUIT'. ")
 
 def roomimage():
     url = "0"
@@ -187,7 +183,7 @@ def talk(information):
         sql = "SELECT dialogues FROM npc WHERE npc.id ='" + monsterid + "'"
         cur.execute(sql)
         for result in cur:
-            monsterdialogue = str(result)
+            monsterdialogue = str(result[0])
         UpdateConsole(monsterdialogue)
 
     else:
@@ -218,7 +214,7 @@ def isitover():
     for result in cur:
         keyitemcheck = result[0]
     if keyitemcheck == 666:
-        ui.stop_running()
+        universemission_ui.stop_running()
 
 
 #Sees if there is also an keyitem in the room. If not, roomstate ++. If is and player owns item, roomstate ++
@@ -381,13 +377,13 @@ def look(information):
        sql = "SELECT Description FROM ITEM WHERE id ='" + str(informationid) + "'"
        cur.execute(sql)
        for result in cur:
-           UpdateConsole(result)
+           UpdateConsole(result[0])
 
    elif mob in mobs():
        sql = "SELECT Description FROM NPC WHERE id ='" + str(mob) + "'"
        cur.execute(sql)
        for result in cur:
-           UpdateConsole(result)
+           UpdateConsole(result[0])
 
 
    else:
@@ -506,7 +502,7 @@ def combineitems(information):
 def UpdateConsole(text):
     global consoletext
     consoletext = str(text)
-    ui.parseprint(str(text))
+    universemission_ui.parseprint(str(text))
 
 def returnConsoletext():
     global consoletext
@@ -547,7 +543,8 @@ def command(string):
            elif len(list) == 1:
                UpdateConsole("Try talking TO someone.")
 
-
+       elif list[0] == "help":
+           help()
 
        elif list[0] == "cry":
            Cry()
@@ -609,7 +606,7 @@ def roomimage():
 #Game loop
 def GAME():
    global db,cur
-   db = mysql.connector.connect(host="localhost",user="root",passwd="juuri123",db="space",buffered=True)
+   db = mysql.connector.connect(host="localhost",user="spacecaptain",passwd="rocket",db="space",buffered=True)
    cur=db.cursor()
    UpdateConsole(database("description"))
    return

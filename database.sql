@@ -8,6 +8,9 @@ CREATE DATABASE space;
 # Using database.
 USE space;
 
+#CREATE USER 'spacecaptain'@'localhost' IDENTIFIED BY 'rocket';
+#GRANT SELECT, INSERT, UPDATE, DELETE ON space.* TO spacecaptain@localhost;
+
 
 # Creating NPC-table.
 CREATE TABLE NPC (
@@ -168,12 +171,12 @@ INSERT INTO RoomState
 INSERT INTO RoomState
 		VALUES(2, 3, "Just a plain Corridor", "You cleaned up the grafitti and all that is left is 'clean wall'. Clean corridors are a janitor’s best friend. "
 				"You actually aren’t paid to do this but it soothes your soul nonetheless. \nThe corridor continues to the south. There’s a door to the north.", "corridor.png", 1, null, 3, null, 6, null, null, null, null,
-				666);
+				null);
 INSERT INTO RoomState
-		VALUES(3, 1, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight… There is a single 'clothespin' on the corridor floor.", "corridor2.png", 2, 4, null, null, 7, 22, null, null, null,
+		VALUES(3, 1, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight… There is a single 'clothespin' on the corridor floor.", "corridor2.png", 2, null, null, null, 7, 22, null, null, null,
 				22);
 INSERT INTO RoomState
-		VALUES(3, 2, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight…", "corridor2.png", 2, 4, null, null, 7, 22, null, null,
+		VALUES(3, 2, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight…", "corridor2.png", 2, null, null, null, 7, 22, null, null,
 				"use clothespin", 22);
 INSERT INTO RoomState
 		VALUES(3, 3, "Stinky Elevator Corridor", "After plugging the 'clothespin' on your nose you can see the 'gooped keypad' before the elevator. \nThe corridor goes north. "
@@ -196,10 +199,10 @@ INSERT INTO RoomState
 				"'Button 1' is for the bridge, 'Button 2' is for the engine room and 'Button 3' is for Deck 42. A curious amount of buttons for a ship with 50 decks. \nThere’s a corridor to the east.", "elevator.png",
 				null, 3, null, null, 19, 20, 21, null, "press button 3", null);
 INSERT INTO RoomState
-		VALUES(5, 2, "The Elevator", "After the ride the elevator sits still. \nThe door is open to the east.", "elevator.png", null, 6, null, null, 19, 20, 21, null, null, null);
+		VALUES(5, 2, "The Elevator", "After the ride the elevator sits still. You smell smoke coming from the keypad buttons; the elevator is completely useless now. \nThe door is open to the east.", "elevator.png", null, 6, null, null, 19, 20, 21, null, null, null);
 INSERT INTO RoomState
-		VALUES(6, 1, "Bathroom Corridor", "As you step out of the elevator, the keypad to open it sparks and stops functioning. The corridor looks largely the same as the corridor upstairs. "
-				"\nThere’s a locked bathroom door to the east and the corridor continues north.", "corridor_mirrored.png", 7, null, null, null, null, null, null, null, "unlock the door", 17);
+		VALUES(6, 1, "Bathroom Corridor", "The corridor looks largely the same as the corridor upstairs. Only the sound of sewers makes it seem any different."
+				"\nThere’s a locked bathroom door to the east and the corridor continues north.", "corridor_mirrored.png", 7, null, null, null, null, null, null, null, "unlock door", 17);
 INSERT INTO RoomState
 		VALUES(6, 2, "Bathroom Corridor", "A faint whiff of a toilet fills the air. \nThere’s a bathroom door to the east and the corridor continues north.", "corridor_mirrored.png", 7, 10, null, null, null, null, null, null,
 				null, null);
@@ -216,10 +219,10 @@ INSERT INTO RoomState
 				"\nThere’s a corridor to the south and an open door to the east but you need to get past the creature first.", "livingquarters.png", null, null, 7, null, 15, null, null, 2, "pray for harambe", null);
 INSERT INTO RoomState
 		VALUES(8, 2, "Living Quarters", "A wild Harambe appears and throws Pmurt out of the spaceship… it seemed as easy as throwing a baby into a gorilla pit. "
-				"\nThere’s a corridor to the south but the Holy Gorilla is blocking the way. There's also an open door to the east.", "harambe.png", null, 9, null, null, 15, null, null, 3, "move east", null);
+				"\nThere’s a corridor to the south but the Holy Gorilla is blocking the way. You feel compelled to 'thank' this mysterious saviour.", "harambe.png", null, 9, null, null, 15, null, null, 3, "thank", null);
 INSERT INTO RoomState
 		VALUES(8, 3, "Living Quarters", "The living quarters have always been a miserably sterile place. As a janitor, you enjoy the cleanliness of the place but otherwise the place bores you to tears. "
-				"A strangely unassuming gorilla looks at you. He looks very similiar to the one in the 'picture'. \nThere’s a corridor to the south and an open door to the east.", "harambe.png", null, 9, 7, null, 15,
+				"A strangely unassuming gorilla looks at you. He looks very similiar to the one in the 'picture'. \nThere’s a corridor to the south and an open door to the east.", "livingquarters.png", null, 9, 7, null, 15,
 				null, null, 3, null, null);
 INSERT INTO RoomState
 		VALUES(9, 1, "Janitor's Room", "Ah, home sweet home. This is your castle. It has all the things a man needs, a 'bag of crisps', a desk and a picture of a dog. "
@@ -239,7 +242,7 @@ INSERT INTO RoomState
 				"", "toilet.png", null,
 				null, null, null, null, null, null, null, "wait", null);
 INSERT INTO RoomState
-		VALUES(10, 3, "The Bathroom", "The captain gets out of the toilet and quickly rushes out into the corridor. You quickly rush into the toilet and do your deed. As you're just finishing your deed, the emergency lockdown starts again with the captain of the ship bellowing 'WHO DISABLED THE LOCKDOWN?' from the ship's intercomm. You sigh and get out... waiting for your next adventure. [GAME ENDS]", "toilet.png", null, null, null, null, null, null, null, 1, null, null);
+		VALUES(10, 3, "The Bathroom", "The captain gets out of the toilet and quickly rushes out into the corridor. You quickly rush into the toilet and do your deed. As you're just finishing your deed, the emergency lockdown starts again with the captain of the ship bellowing 'WHO DISABLED THE LOCKDOWN?' from the ship's intercomm. You sigh and get out... waiting for your next adventure. [GAME ENDS]", "toilet.png", null, null, null, null, null, null, null, 1, null, 666);
 		
 # Inserting data into Room-table. (ID, RoomStateID)
 INSERT INTO Room
