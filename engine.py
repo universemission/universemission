@@ -218,7 +218,7 @@ def isitover():
     for result in cur:
         keyitemcheck = result[0]
     if keyitemcheck == 666:
-        pass ##################### LOPETTAA PELIN ##############################
+        ui.stop_running()
 
 
 #Sees if there is also an keyitem in the room. If not, roomstate ++. If is and player owns item, roomstate ++
@@ -581,8 +581,6 @@ def command(string):
                UpdateConsole("Pray for what?")
            else:
                UpdateConsole("Who do you pray for?")
-       elif list[0] == "inventory":
-           itemsavailablelist()
        elif list[0] == "xyzzy":
            UpdateConsole("Nothing happens.")
 

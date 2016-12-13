@@ -2,6 +2,7 @@ import pygcurse, pygame, sys, engine, mysql.connector, videoplayer
 from pygame.locals import *
 
 response = ""
+running = True
 
 def parser(command):
     #Going to be replaced with the actual game logic
@@ -42,18 +43,24 @@ def init_ui():
     sound = pygame.mixer.Sound('spacehum.ogg')
     sound.play(-1)
 
+def stop_running():
+    global running
+    running = False
+
 def main():
     global db
     global cur
     global gamewindow
     global sidebox
     global response
+    global running
+    videoplayer.set_video("intro.mp4")
     videoplayer.run()
     init_ui()
-    running = True
 
     #The actual game loop
     while running:
+        engine.isitover()
         image = pygame.image.load(engine.roomimage())
         gamewindow.setscreencolors((148,148,148), 'black', clear=True)
         gamewindow.surface.blit(image,(10,10))
@@ -68,8 +75,10 @@ def main():
         if parser(command):
             pygame.display.update()
         else:
-            running = False
-            engine.db.close()
-            pygame.quit()
+            stop_running()
+    videoplayer.set_video("outro.mp4")
+    videoplayer.run()
+    engine.db.close()
+    pygame.quit()
 
 if __name__ == "__main__": main()

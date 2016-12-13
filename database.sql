@@ -145,6 +145,8 @@ INSERT INTO Item
 		VALUES(21, "Button 3", "It's a button to the Deck 42.", 0, 0, null, null);
 INSERT INTO Item
 		VALUES(22, "Clothespin", "Somebody must have dropped this on the way to the laundry room.", 1, 0, null, null);
+INSERT INTO Item
+		VALUES(666, "Clothespin", "Somebody must have dropped this on the way to the laundry room.", 1, 0, null, null);		
 
 
 # Inserting data into RoomState-table. (RoomID, ID, Name, Description, ImagePath, North, East, South, West, Item1, Item2, Item3, NPCID, Keyword, KeyItem)
@@ -166,7 +168,7 @@ INSERT INTO RoomState
 INSERT INTO RoomState
 		VALUES(2, 3, "Just a plain Corridor", "You cleaned up the grafitti and all that is left is 'clean wall'. Clean corridors are a janitor’s best friend. "
 				"You actually aren’t paid to do this but it soothes your soul nonetheless. \nThe corridor continues to the south. There’s a door to the north.", null, 1, null, 3, null, 6, null, null, null, null,
-				null);
+				666);
 INSERT INTO RoomState
 		VALUES(3, 1, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight… There is a single 'clothespin' on the corridor floor.", null, 2, 4, null, null, 7, 22, null, null, null,
 				22);

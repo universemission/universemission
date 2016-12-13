@@ -2,25 +2,31 @@ import pygame, pyglet, ctypes
 pyglet.lib.load_library('avbin')
 pyglet.have_avbin=True
 
-vidPath="intro.mp4"
 window = pyglet.window.Window(fullscreen=True)
 player = pyglet.media.Player()
 source = pyglet.media.StreamingSource()
-MediaLoad = pyglet.media.load(vidPath)
 
-player.queue(MediaLoad)
-player.play()
+def set_video(video):
+    global window
+    global player
+    MediaLoad = pyglet.media.load(video)
+    player.queue(MediaLoad)
+    player.play()
 
 @window.event
 def on_draw():
+    global window
+    global player
     window.clear()
     if player.source and player.source.video_format:
         player.get_texture().blit(0,0)
 
-def on_key_press(symbol, modifiers):
-    if symbol == key.ESCAPE:
-        return True
+def update(dt):
+    global player
+    if not player.playing:
+        pyglet.app.exit()
 
 def run():
+    dt = pyglet.clock.tick()
+    pyglet.clock.schedule(update)
     pyglet.app.run()
-
