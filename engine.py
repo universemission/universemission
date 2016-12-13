@@ -307,7 +307,7 @@ def MoveRoom(direction):
            UpdateConsole(database("description"))
        #If you cant go there
        else:
-           UpdateConsole("You cant go there! Banging your head against wall won't help!")
+           UpdateConsole("You cant go there! Banging your head against the wall won't help!")
 
 
 #Picking up items

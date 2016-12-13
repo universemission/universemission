@@ -146,100 +146,100 @@ INSERT INTO Item
 INSERT INTO Item
 		VALUES(22, "Clothespin", "Somebody must have dropped this on the way to the laundry room.", 1, 0, null, null);
 INSERT INTO Item
-		VALUES(666, "Clothespin", "Somebody must have dropped this on the way to the laundry room.", 1, 0, null, null);		
+		VALUES(666, "Pentagram", "A sign of the end times", 0, 0, null, null);		
 
 
 # Inserting data into RoomState-table. (RoomID, ID, Name, Description, ImagePath, North, East, South, West, Item1, Item2, Item3, NPCID, Keyword, KeyItem)
 INSERT INTO RoomState
-		VALUES(1, 1, "The Bridge", "As you enter the bridge, I’m struck by a sudden dread. The bridge is that of your average Federation warship. "
+		VALUES(1, 1, "The Bridge", "As you enter the bridge, you're struck by a sudden dread. The bridge is that of your average Federation warship. "
 				"Golden decorations, posters of Miss Multiverse 2421 and video games. But why is the bridge empty? Soon after, the emergency lockdown starts for no apparent reason. "
-				"As I just cleaned the place, you only need to get out… no harm just disabling the emergency lockdown, right? There is a 'paper note' on this 'alerting dashboard'."
-				"\nThere’s an exit to the south, but it is locked.", null, null, null, null, null, 1, 2, null, null, "1234", null);
+				"As you just cleaned the place, you only need to get out… no harm just disabling the emergency lockdown, right? There is a 'paper note' on this 'alerting dashboard'."
+				"\nThere’s an exit to the south, but it is locked.", "bridge.png", null, null, null, null, 1, 2, null, null, "1234", null);
 INSERT INTO RoomState
 		VALUES(1, 2, "The Bridge", "There, much better. No flashing red lights, the 'dashboard' is stabilized. "
-				"But now the double-double bacon burger with cheese you had for lunch is coming out fast and is its own emergency. Where’s the bathroom? \nThere’s an exit to the south.", null, null, null, 2,
+				"But now the double-double bacon burger with cheese you had for lunch is coming out fast and is its own emergency. Where’s the bathroom? \nThere’s an exit to the south.", "bridge.png", null, null, 2,
 				null, 3, null, null, null, null, null);
 INSERT INTO RoomState
 		VALUES(2, 1, "Dirty Corridor", "Wait, what is this? This corridor was cleaned 30 minutes ago. Now someone has already ruined the walls with 'graffiti'. Luckily, there is a 'wet mop' on the floor. "
-				"\nThe corridor continues to the south. There’s a door to the north.", null, 1, null, 3, null, 4, 5, null, null, null, 4);
+				"\nThe corridor continues to the south. There’s a door to the north.", "corridor.png", 1, null, 3, null, 4, 5, null, null, null, 4);
 INSERT INTO RoomState
 		VALUES(2, 2, "Dirty Corridor", "Wait, what is this? This corridor was cleaned 30 minutes ago. Now someone has already ruined the walls with 'graffiti'. \nThe corridor continues to the south. "
-				"There’s a door to the north.", null, 1, null, 3, null, 5, null, null, null, "clean graffiti", 4);
+				"There’s a door to the north.", "corridor.png", 1, null, 3, null, 5, null, null, null, "clean graffiti", 4);
 INSERT INTO RoomState
 		VALUES(2, 3, "Just a plain Corridor", "You cleaned up the grafitti and all that is left is 'clean wall'. Clean corridors are a janitor’s best friend. "
-				"You actually aren’t paid to do this but it soothes your soul nonetheless. \nThe corridor continues to the south. There’s a door to the north.", null, 1, null, 3, null, 6, null, null, null, null,
+				"You actually aren’t paid to do this but it soothes your soul nonetheless. \nThe corridor continues to the south. There’s a door to the north.", "corridor.png", 1, null, 3, null, 6, null, null, null, null,
 				666);
 INSERT INTO RoomState
-		VALUES(3, 1, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight… There is a single 'clothespin' on the corridor floor.", null, 2, 4, null, null, 7, 22, null, null, null,
+		VALUES(3, 1, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight… There is a single 'clothespin' on the corridor floor.", "corridor2.png", 2, 4, null, null, 7, 22, null, null, null,
 				22);
 INSERT INTO RoomState
-		VALUES(3, 2, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight…", null, 2, 4, null, null, 7, 22, null, null,
+		VALUES(3, 2, "Stinky Elevator Corridor", "Oh science, this smell! You can’t even think straight…", "corridor2.png", 2, 4, null, null, 7, 22, null, null,
 				"use clothespin", 22);
 INSERT INTO RoomState
 		VALUES(3, 3, "Stinky Elevator Corridor", "After plugging the 'clothespin' on your nose you can see the 'gooped keypad' before the elevator. \nThe corridor goes north. "
-				"There’s a door to the east and an elevator to the west.", null, 2, 4, null, null, 7, null, null, null, "clean gooped keypad", 13);
+				"There’s a door to the east and an elevator to the west.", "corridor2.png", 2, 4, null, null, 7, null, null, null, "clean gooped keypad", 13);
 INSERT INTO RoomState
 		VALUES(3, 4, "Stinky Elevator Corridor", "Cleaning the yellow goop didn’t help much but at least there is a way out of this stinky corridor. \nThe corridor goes north. "
-				"There’s a door to the east and an elevator to the west.", null, 2, 4, null, 5, 8, null, null, null, null, null);
+				"There’s a door to the east and an elevator to the west.", "corridor2.png", 2, 4, null, 5, 8, null, null, null, null, null);
 INSERT INTO RoomState
 		VALUES(4, 1, "The Broom Closet", "A broom closet in 25th century looks largely the same as a broom closet in the 21st century. It’s largely an unassuming place. "
-				"On the floor there’s a 'bucket' and 'soap'. There’s also a 'water tap'... Maybe I should pick up a 'bucket'? \nThere’s a corridor to the west.", null, null, null, null, 3, 9, 10, 11, null, null,
+				"On the floor there’s a 'bucket' and 'soap'. There’s also a 'water tap'... Maybe you should pick up a 'bucket'? \nThere’s a corridor to the west.", "broomcloset.png", null, null, null, 3, 9, 10, 11, null, null,
 				10);
 INSERT INTO RoomState
 		VALUES(4, 2, "The Broom Closet", "A broom closet in 25th century looks largely the same as a broom closet in the 21st century. It’s largely an unassuming place. On the floor there’s 'soap'. "
-				"There’s also a 'water tap'. \nThere’s a corridor to the west.", null, null, null, null, 3, 9, 11, null, null, null, 9);
+				"There’s also a 'water tap'. \nThere’s a corridor to the west.", "broomcloset.png", null, null, null, 3, 9, 11, null, null, null, 9);
 INSERT INTO RoomState
 		VALUES(4, 3, "The Broom Closet", "A broom closet in 25th century looks largely the same as a broom closet in the 21st century. It’s largely an unassuming place. There’s also a 'water tap.' "
-				"\nThere’s a corridor to the west.", null, null, null, null, 3, 11, null, null, null, null, null);
+				"\nThere’s a corridor to the west.", "broomcloset.png", null, null, null, 3, 11, null, null, null, null, null);
 INSERT INTO RoomState
 		VALUES(5, 1, "The Elevator", "The elevator seems like the only clean place so far. There’s a control panel with three buttons. "
-				"'Button 1' is for the bridge, 'Button 2' is for the engine room and 'Button 3' is for Deck 42. A curious amount of buttons for a ship with 50 decks. \nThere’s a corridor to the east.", null,
+				"'Button 1' is for the bridge, 'Button 2' is for the engine room and 'Button 3' is for Deck 42. A curious amount of buttons for a ship with 50 decks. \nThere’s a corridor to the east.", "elevator.png",
 				null, 3, null, null, 19, 20, 21, null, "press button 3", null);
 INSERT INTO RoomState
-		VALUES(5, 2, "The Elevator", "After the ride the elevator sits still. \nThe door is open to the south.", null, null, null, 6, null, 19, 20, 21, null, null, null);
+		VALUES(5, 2, "The Elevator", "After the ride the elevator sits still. \nThe door is open to the east.", "elevator.png", null, 6, null, null, 19, 20, 21, null, null, null);
 INSERT INTO RoomState
 		VALUES(6, 1, "Bathroom Corridor", "As you step out of the elevator, the keypad to open it sparks and stops functioning. The corridor looks largely the same as the corridor upstairs. "
-				"\nThere’s a locked bathroom door to the east and the corridor continues north.", null, 7, null, null, null, null, null, null, null, "unlock the door", 17);
+				"\nThere’s a locked bathroom door to the east and the corridor continues north.", "corridor_mirrored.png", 7, null, null, null, null, null, null, null, "unlock the door", 17);
 INSERT INTO RoomState
-		VALUES(6, 2, "Bathroom Corridor", "A faint whiff of a toilet fills the air. \nThere’s a bathroom door to the east and the corridor continues north.", null, 7, 10, null, null, null, null, null, null,
+		VALUES(6, 2, "Bathroom Corridor", "A faint whiff of a toilet fills the air. \nThere’s a bathroom door to the east and the corridor continues north.", "corridor_mirrored.png", 7, 10, null, null, null, null, null, null,
 				null, null);
 INSERT INTO RoomState
 		VALUES(7, 1, "Disgusting Corridor", "Oh boy. This place is quite the mess. There’s 'vomit' on the window to space. It stinks and blocks the beautiful view. "
-				"\nThere’s a door to the north and the corridor continues to the south.", null, 8, null, 6, null, 14, null, null, null, "clean vomit", 13);
+				"\nThere’s a door to the north and the corridor continues to the south.", "corridor2_mirrored.png", 8, null, 6, null, 14, null, null, null, "clean vomit", 13);
 INSERT INTO RoomState
 		VALUES(7, 2, "Just another Corridor", "Another cleaned corridor. The 'window' shows a very beautiful view of the space beyond. \nThere’s a door to the north and the corridor continues to the south.",
-				null, 8, null, 6, null, 18, null, null, null, null, null);
+				"corridor2_mirrored.png", 8, null, 6, null, 18, null, null, null, null, null);
 INSERT INTO RoomState
 		VALUES(8, 1, "Living Quarters", "The living quarters have always been a miserably sterile place. As a janitor, you enjoy the cleanliness of the place but otherwise the place bores you to tears. "
 				"This time, though, there’s an unusual sight to see. A green creature with a “Vote for 'Pmurt'” election pin is guarding the lobby. "
 				"Another more interesting addition is a 'picture' of a gorilla on the lobby table with the letter H on it. "
-				"\nThere’s a corridor to the south and an open door to the east but you need to get past the creature first.", null, null, null, 7, null, 15, null, null, 2, "pray for harambe", null);
+				"\nThere’s a corridor to the south and an open door to the east but you need to get past the creature first.", "livingquarters.png", null, null, 7, null, 15, null, null, 2, "pray for harambe", null);
 INSERT INTO RoomState
-		VALUES(8, 2, "Living Quarters", "Wild Harambe appears and throws Pmurt out of the spaceship… it seemed as easy as throwing a baby into a gorilla pit. "
-				"\nThere’s a corridor to the south but the Holy Gorilla is blocking the way. There's also an open door to the east.", null, null, 9, null, null, 15, null, null, 3, "move east", null);
+		VALUES(8, 2, "Living Quarters", "A wild Harambe appears and throws Pmurt out of the spaceship… it seemed as easy as throwing a baby into a gorilla pit. "
+				"\nThere’s a corridor to the south but the Holy Gorilla is blocking the way. There's also an open door to the east.", "harambe.png", null, 9, null, null, 15, null, null, 3, "move east", null);
 INSERT INTO RoomState
 		VALUES(8, 3, "Living Quarters", "The living quarters have always been a miserably sterile place. As a janitor, you enjoy the cleanliness of the place but otherwise the place bores you to tears. "
-				"A strangely unassuming gorilla looks at you. He looks very similiar to the one in the 'picture'. \nThere’s a corridor to the south and an open door to the east.", null, null, 9, 7, null, 15,
+				"A strangely unassuming gorilla looks at you. He looks very similiar to the one in the 'picture'. \nThere’s a corridor to the south and an open door to the east.", "harambe.png", null, 9, 7, null, 15,
 				null, null, 3, null, null);
 INSERT INTO RoomState
 		VALUES(9, 1, "Janitor's Room", "Ah, home sweet home. This is your castle. It has all the things a man needs, a 'bag of crisps', a desk and a picture of a dog. "
-				"The desk has all of your important things including a 'master key'... That seems important, maybe you should have it with you? \nThere’s a door to the south.", null, null, null, 8, null, 16, 17,
+				"The desk has all of your important things including a 'master key'... That seems important, maybe you should have it with you? \nThere’s a door to the west.", "janitorsroom.png", null, null, null, 8, 16, 17,
 				null, null, null, 17);
 INSERT INTO RoomState
-		VALUES(9, 2, "Janitor's Room", "Ah, home sweet home. This is your castle. There's a 'bag of crisps', a desk and a picture of a dog. \nThere’s a door to the south.", null, null, null, 8, null,
+		VALUES(9, 2, "Janitor's Room", "Ah, home sweet home. This is your castle. There's a 'bag of crisps', a desk and a picture of a dog. \nThere’s a door to the west.", "janitorsroom.png", null, null, null, 8,
 				16, null, null, null, null, 16);
 INSERT INTO RoomState
-		VALUES(9, 3, "Janitor's Room", "After emptying your room of all valuables, you don’t think there’s much here. \nThere’s a door to the south.", null, null, null, 8, null, null, null, null, null, null,
+		VALUES(9, 3, "Janitor's Room", "After emptying your room of all valuables, you don’t think there’s much here. \nThere’s a door to the west.", "janitorsroom.png", null, null, null, 8, null, null, null, null, null,
 				null);
 INSERT INTO RoomState
 		VALUES(10, 1, "The Bathroom", "The smell of this room reminds you of a toilet. Maybe this is because that is what the room is. All of the stalls are locked. All you can do is wait. "
-				"\nThere’s a door to the west.", null, null, null, null, 6, null, null, null, null, "wait", null);
+				"\nThere’s a door to the west.", "toilet.png", null, null, null, 6, null, null, null, null, "wait", null);
 INSERT INTO RoomState
-		VALUES(10, 2, "The Bathroom", "The smell of this room reminds you of a toilet. Maybe this is because that is what the room is. All of the stalls are locked. All you can do is wait. "
-				"\nThere’s a door to the west.", null, null,
-				null, null, 6, null, null, null, null, "wait", null);
+		VALUES(10, 2, "The Bathroom", "You're getting extremely impatient. So much so that you accidentally lock the bathroom door."
+				"", "toilet.png", null,
+				null, null, null, null, null, null, null, "wait", null);
 INSERT INTO RoomState
-		VALUES(10, 3, "The Bathroom", "GAME ENDS", null, null, null, null, null, null, null, null, 1, null, null);
+		VALUES(10, 3, "The Bathroom", "The captain gets out of the toilet and quickly rushes out into the corridor. You quickly rush into the toilet and do your deed. As you're just finishing your deed, the emergency lockdown starts again with the captain of the ship bellowing 'WHO DISABLED THE LOCKDOWN?' from the ship's intercomm. You sigh and get out... waiting for your next adventure. [GAME ENDS]", "toilet.png", null, null, null, null, null, null, null, 1, null, null);
 		
 # Inserting data into Room-table. (ID, RoomStateID)
 INSERT INTO Room

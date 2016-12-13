@@ -1,4 +1,4 @@
-import pygcurse, pygame, sys, engine, mysql.connector, videoplayer
+import pygcurse, pygame, sys, engine, mysql.connector
 from pygame.locals import *
 
 response = ""
@@ -54,8 +54,9 @@ def main():
     global sidebox
     global response
     global running
-    videoplayer.set_video("intro.mp4")
-    videoplayer.run()
+    #Remnants from previous version
+    #videoplayer.set_video("intro.mp4")
+    #videoplayer.run()
     init_ui()
 
     #The actual game loop
@@ -71,13 +72,10 @@ def main():
         sidebox.update()
         gamewindow.cursor = 0, gamewindow.height-1
         command = input(' >')
-        #box.text = str(command)
         if parser(command):
             pygame.display.update()
         else:
             stop_running()
-    videoplayer.set_video("outro.mp4")
-    videoplayer.run()
     engine.db.close()
     pygame.quit()
 

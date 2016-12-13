@@ -1,4 +1,4 @@
-import pygame, pyglet, ctypes
+import pygame, pyglet, ctypes, gc
 pyglet.lib.load_library('avbin')
 pyglet.have_avbin=True
 
@@ -22,9 +22,10 @@ def on_draw():
         player.get_texture().blit(0,0)
 
 def update(dt):
+    global window
     global player
     if not player.playing:
-        pyglet.app.exit()
+        python.app.exit()
 
 def run():
     dt = pyglet.clock.tick()
